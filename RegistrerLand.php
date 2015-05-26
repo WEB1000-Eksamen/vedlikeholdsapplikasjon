@@ -49,10 +49,10 @@
 
 
 
-  <form method="post" action="RegistrerRom.php" id="endreBookingSkjema" name="endreBookingSkjema">
+  <form method="post" action="RegistrerLand.php" id="endreBookingSkjema" name="endreBookingSkjema">
         
-        Land ID <br /> <input type="text" id="RomID" name="RomID" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()" /> <br/>
-        Navn <br /> <input type="text" id="Navn" name="Navn" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()"/> <br/>
+       
+        Navn <br /> <input type="text" id="CountryName" name="CountryName" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()"/> <br/>
 
             <input type="submit" value="Registrer Rom" id="EndreRomKnapp" name="EndreRomKnapp" /> 
             <input type="reset" value="Nullstill" id="nullstill" name="nullstill" /> <br />
@@ -67,35 +67,33 @@
   @$EndreRomKnapp=$_POST ["EndreRomKnapp"];
     if ($EndreRomKnapp)    
         {           
-            $RomID=$_POST ["RomID"]; 
-            $Navn=$_POST ["Navn"];
-            $HotellromID=$_POST ["HotellromID"];  
+            $CountryName=$_POST ["CountryName"]; 
             $bildenr=$_POST ["bildenr"];
               
            
-            if (!$RomID || !$Navn || !$HotellromID)
+            if (!$CountryName)
                 {
                     print ("Alle felt må fylles ut");  
                 }
             else
                 {
-                    $sqlSetning="SELECT * FROM student WHERE RomID='$RomID';";
+                    $sqlSetning="SELECT * FROM countries WHERE CountryName='$CountryName';";
                     $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig å hente data fra databasen");
                     $antallRader=mysqli_num_rows($sqlResultat); 
                     if ($antallRader!=0)  
                         {
-                            print ("Studenten er registrert fra før");
+                            print ("Landet er registrert fra før");
                         }
                     elseif ($bildenr==="-1") {
-                         $sqlSetning="INSERT INTO student (RomID,Navn,HotellromID) VALUES('$RomID','$Navn','$HotellromID');";
+                         $sqlSetning="INSERT INTO countries (CountryName) VALUES('$CountryName');";
                            mysqli_query($db,$sqlSetning) or die ("ikke mulig å registrere data i databasen");
-                           print ("Følgende student er nå registrert: $RomID $Navn $HotellromID "); 
+                           print ("Følgende Land er nå registrert: $CountryName"); 
                     }
                     else
                         {
-                           $sqlSetning="INSERT INTO student (RomID,Navn,HotellromID) VALUES('$RomID','$Navn','$HotellromID');";
+                           $sqlSetning="INSERT INTO countries (CountryName) VALUES('$CountryName');";
                            mysqli_query($db,$sqlSetning) or die ("ikke mulig å registrere data i databasen");
-                           print ("Følgende student er nå registrert: $RomID $Navn $HotellromID "); 
+                           print ("Følgende land er nå registrert: $CountryName"); 
                         }
                 }
         }

@@ -34,7 +34,6 @@
         public function check () {
             if ($this->userExists()) {
                 if ($this->checkPassword()) {
-                    $this->setLogin();
                     return 2;
                 }
                 return 1;
@@ -76,7 +75,7 @@
         public function changePassword () {
             if ($this->userExists()) {
                 $newPassword = $this->createHash($this->_password);
-                $sql = "UPDATE users SET password = ? WHERE username = ?";
+                $sql = "UPDATE users SET Password = ? WHERE Username = ?";
                 $stmt = $this->db->prepare($sql);
 
                 $stmt->bind_param("ss", $newPassword, $this->_username);
@@ -94,7 +93,7 @@
         public function get ($username = false) {
             if (!$username) {
 
-                $sql = "SELECT userid, username, createddate, lastlogin FROM users";
+                $sql = "SELECT UserID, Username FROM users";
                 $query = $this->db->query($sql);
                 $rows = array();
                 
@@ -106,12 +105,12 @@
 
             } else {
 
-                $sql = "SELECT userid, username, createddate, lastlogin FROM users WHERE username = ?";
+                $sql = "SELECT Username FROM users WHERE Username = ?";
                 $stmt = $this->db->prepare($sql);
 
                 $stmt->execute();
                 $stmt->bind_result($userid, $username, $createddate, $lastlogin);
-                return array('userid' => $userid, 'username' => $username, 'createddate' => $createddate, 'lastlogin' => $lastlogin);
+                return array('Username' => $username);
 
             }
         }
@@ -152,7 +151,7 @@
          *                                  false if it's not
          */
         private function checkPassword () {
-            $sql = "SELECT password FROM users WHERE username = ?";
+            $sql = "SELECT password FROM users WHERE Username = ?";
             $stmt = $this->db->prepare($sql);
 
             $stmt->bind_param("s", $this->_username);

@@ -23,11 +23,9 @@
         <table>
             <thead>
                 <tr>
-                    <th>Bruker ID</th>
+                    <th>BrukerID</th>
                     <th>Brukernavn</th>
                     <th>Passord</th>
-                    <th>Registreringsdato</th>
-                    <th>Siste innlogging</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,11 +34,9 @@
                     $allUsers = $users->get();
                     foreach ($allUsers as $key => $value) {
                         echo "<tr>";
-                        echo "<td>{$value['userid']}</td>";
-                        echo "<td>{$value['username']}</td>";
+                        echo "<td>{$value['UserID']}</td>";
+                        echo "<td>{$value['Username']}</td>";
                         echo "<td>Kryptert</td>";
-                        echo "<td>{$value['createddate']}</td>";
-                        echo "<td>{$value['lastlogin']}</td>";
                         echo "</tr>";
                     }
                 ?>
@@ -116,7 +112,7 @@
                 <select class="change-password-select" name="username">
                     <?php
                     foreach ($allUsers as $key => $value) {
-                        echo "<option value='{$value['username']}'>{$value['username']}</option>";
+                        echo "<option value='{$value['Username']}'>{$value['Username']}</option>";
                     }
                 ?>
                 </select>
