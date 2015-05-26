@@ -68,7 +68,6 @@
     if ($EndreRomKnapp)    
         {           
             $CountryName=$_POST ["CountryName"]; 
-            $bildenr=$_POST ["bildenr"];
               
            
             if (!$CountryName)
