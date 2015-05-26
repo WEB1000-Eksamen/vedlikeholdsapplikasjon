@@ -66,38 +66,31 @@
 
 <?php
 /* Registrerings knapp */ /* Registrerings knapp */ /* Registrerings knapp */ /* Registrerings knapp */ /* Registrerings knapp */ /* Registrerings knapp */ /* Registrerings knapp */
-  @$EndreRomKnapp=$_POST ["EndreRomKnapp"];
+ @$EndreRomKnapp=$_POST ["EndreRomKnapp"];
     if ($EndreRomKnapp)    
         {           
-            $RomID=$_POST ["RomID"]; 
-            $Navn=$_POST ["Navn"];
-            $HotellromID=$_POST ["HotellromID"];  
-            $bildenr=$_POST ["bildenr"];
+            $RoomNumber=$_POST ["RoomNumber"]; 
               
            
-            if (!$RomID || !$Navn || !$HotellromID)
+            if (!$RoomNumber)
                 {
                     print ("Alle felt må fylles ut");  
                 }
             else
                 {
-                    $sqlSetning="SELECT * FROM student WHERE RomID='$RomID';";
+                    $sqlSetning="SELECT * FROM rooms WHERE RoomNumber='$RoomNumber';";
                     $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig å hente data fra databasen");
                     $antallRader=mysqli_num_rows($sqlResultat); 
                     if ($antallRader!=0)  
                         {
-                            print ("Studenten er registrert fra før");
+                            print ("Landet er registrert fra før");
                         }
-                    elseif ($bildenr==="-1") {
-                         $sqlSetning="INSERT INTO student (RomID,Navn,HotellromID) VALUES('$RomID','$Navn','$HotellromID');";
-                           mysqli_query($db,$sqlSetning) or die ("ikke mulig å registrere data i databasen");
-                           print ("Følgende student er nå registrert: $RomID $Navn $HotellromID "); 
-                    }
+                    
                     else
                         {
-                           $sqlSetning="INSERT INTO student (RomID,Navn,HotellromID) VALUES('$RomID','$Navn','$HotellromID');";
+                           $sqlSetning="INSERT INTO countries (RoomNumber) VALUES('$RoomNumber');";
                            mysqli_query($db,$sqlSetning) or die ("ikke mulig å registrere data i databasen");
-                           print ("Følgende student er nå registrert: $RomID $Navn $HotellromID "); 
+                           print ("Følgende land er nå registrert: $RoomNumber"); 
                         }
                 }
         }

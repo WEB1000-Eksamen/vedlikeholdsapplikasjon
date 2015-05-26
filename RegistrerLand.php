@@ -1,6 +1,7 @@
 <?php
     require_once("top.html");
     require_once("php/constants.php");
+	require_once("php/connect.php");
 ?> 
   <div id="FinnBooking">
 <h3>Velg hva du skal registrere</h3>
@@ -83,11 +84,7 @@
                         {
                             print ("Landet er registrert fra før");
                         }
-                    elseif ($bildenr==="-1") {
-                         $sqlSetning="INSERT INTO countries (CountryName) VALUES('$CountryName');";
-                           mysqli_query($db,$sqlSetning) or die ("ikke mulig å registrere data i databasen");
-                           print ("Følgende Land er nå registrert: $CountryName"); 
-                    }
+                    
                     else
                         {
                            $sqlSetning="INSERT INTO countries (CountryName) VALUES('$CountryName');";
