@@ -1,2 +1,5 @@
 # Ignore IntelliJ/PHPStorm IDE folder
 .idea
+
+# constants
+php/constants.php

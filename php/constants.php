@@ -5,8 +5,8 @@
 final class Config {
     // Database login info
     public static $DB_HOST_NAME = "localhost";
-    public static $DB_USER_NAME = "web-is-gr11w"; // studentnummer
-    public static $DB_USER_PASSWORD = "92122"; // db passord (samme som phpmyadmin)
+    public static $DB_USER_NAME = "root"; // studentnummer
+    public static $DB_USER_PASSWORD = ""; // db passord (samme som phpmyadmin)
     public static $DB_DB_NAME = "web-is-gr11w"; // studentnummer
 
     // Image upload constants
