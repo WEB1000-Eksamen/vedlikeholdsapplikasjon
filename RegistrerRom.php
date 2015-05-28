@@ -78,7 +78,7 @@
                 }
             else
                 {
-                    $sqlSetning="SELECT * FROM rooms WHERE RoomNumber='$RoomNumber';";
+                    $sqlSetning="SELECT * FROM rooms WHERE Beds, RoomtypeName, Pris ='$Beds, $RoomtypeName, $Pris';";
                     $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig å hente data fra databasen");
                     $antallRader=mysqli_num_rows($sqlResultat); 
                     if ($antallRader!=0)  

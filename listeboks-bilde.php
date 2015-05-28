@@ -1,25 +1,23 @@
 <?php
     require_once("php/connect.php");
-    $sqlSetning="SELECT * FROM bilde ORDER BY bildenr;";
+    $sqlSetning="SELECT * FROM images ORDER BY ImageID;";
     $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig å hente data fra databasen"); 
     $antallRader=mysqli_num_rows($sqlResultat); 
-    print("<select name='bildenr' id='bildenr'>");
+    print("<select name='ImageID' id='ImageID'>");
     print("<option value='-1'>-----------------------------------</option>");
     for ($r=1;$r<=$antallRader;$r++)
         {
             $rad=mysqli_fetch_array($sqlResultat); 
-            $bildenr=$rad["bildenr"]; 
-            $opplastingsdato=$rad["opplastingsdato"];  
-            $filnavn=$rad["filnavn"]; 
-            $beskrivelse=$rad["beskrivelse"]; 
+            $ImageID=$rad["ImageID"]; 
+            $$URL=$rad["$URL"]; 
             
-            if ($bildenr==$bildenredit)
+            if ($ImageID==$ImageIDedit)
                 {
-                    print("<option value='$bildenr' selected>$bildenr $beskrivelse </option>"); 
+                    print("<option value='$ImageID' selected>$ImageID $URL </option>"); 
                 } 
             else
                 {
-                   print("<option value='$bildenr'>$bildenr $beskrivelse </option>");
+                   print("<option value='$ImageID'>$ImageID $URL </option>");
                 }   
         }
        print("</select>"); 

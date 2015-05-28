@@ -51,16 +51,20 @@
 
   <form method="post" action="RegistrerRom.php" id="endreBookingSkjema" name="endreBookingSkjema">
         
-        Romtype ID <br /> <input type="text" id="RomID" name="RomID" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()" /> <br/>
-        Navn <br /> <input type="text" id="Navn" name="Navn" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()"/> <br/>
-        Senger <br /> <input type="text" id="Navn" name="Navn" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()"/> <br/>
-        Pris <br /> <input type="text" id="Navn" name="Navn" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()"/> <br/>
+        Romtype ID <br /> <input type="text" id="RoomtypeID" name="RoomtypeID" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()" /> <br/>
+        Navn <br /> <input type="text" id="RoomtypeName" name="RoomtypeName" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()"/> <br/>
+        Senger <br /> <input type="text" id="Beds" name="Beds" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()"/> <br/>
+        Pris <br /> <input type="text" id="Price" name="Price" required onFocus="fokus(this)" onBlur="mistetFokus(this)" onMouseOver="musInn(this)" onMouseOut="musUt()"/> <br/>
         Bilde ID <?php require_once("listeboks-bilde.php"); ?>  <br/>
             <input type="submit" value="Registrer Rom" id="EndreRomKnapp" name="EndreRomKnapp" /> 
             <input type="reset" value="Nullstill" id="nullstill" name="nullstill" /> <br />
 
 
-
+RoomtypeID
+RoomtypeName
+Beds 
+Price
+ImageID
 
 
 
@@ -69,19 +73,20 @@
   @$EndreRomKnapp=$_POST ["EndreRomKnapp"];
     if ($EndreRomKnapp)    
         {           
-            $RomID=$_POST ["RomID"]; 
-            $Navn=$_POST ["Navn"];
-            $HotellromID=$_POST ["HotellromID"];  
+            $RoomtypeID=$_POST ["RoomtypeID"]; 
+            $RoomtypeName=$_POST ["RoomtypeName"];
+			$Beds=$_POST ["Beds"];
+			$Price=$_POST ["Price"];			 
             $bildenr=$_POST ["bildenr"];
               
            
-            if (!$RomID || !$Navn || !$HotellromID)
+            if (!$RoomtypeID || !$RoomtypeName || !$Beds || !$Price)
                 {
                     print ("Alle felt må fylles ut");  
                 }
             else
                 {
-                    $sqlSetning="SELECT * FROM student WHERE RomID='$RomID';";
+                    $sqlSetning="SELECT * FROM student WHERE RoomtypeID='$RoomtypeID';";
                     $sqlResultat=mysqli_query($db,$sqlSetning) or die ("ikke mulig å hente data fra databasen");
                     $antallRader=mysqli_num_rows($sqlResultat); 
                     if ($antallRader!=0)  
@@ -89,15 +94,15 @@
                             print ("Studenten er registrert fra før");
                         }
                     elseif ($bildenr==="-1") {
-                         $sqlSetning="INSERT INTO student (RomID,Navn,HotellromID) VALUES('$RomID','$Navn','$HotellromID');";
+                         $sqlSetning="INSERT INTO student (RoomtypeID,RoomtypeName,Beds,Price) VALUES('$RoomtypeID','$RoomtypeName','$Beds','$Price');";
                            mysqli_query($db,$sqlSetning) or die ("ikke mulig å registrere data i databasen");
-                           print ("Følgende student er nå registrert: $RomID $Navn $HotellromID "); 
+                           print ("Følgende student er nå registrert: $RoomtypeID $RoomtypeName $Beds $Price "); 
                     }
                     else
                         {
-                           $sqlSetning="INSERT INTO student (RomID,Navn,HotellromID) VALUES('$RomID','$Navn','$HotellromID');";
+                           $sqlSetning="INSERT INTO student (RoomtypeID,RoomtypeName,Beds, Price) VALUES('$RoomtypeID','$RoomtypeName','$Beds','$Price');";
                            mysqli_query($db,$sqlSetning) or die ("ikke mulig å registrere data i databasen");
-                           print ("Følgende student er nå registrert: $RomID $Navn $HotellromID "); 
+                           print ("Følgende student er nå registrert: $RoomtypeID $RoomtypeName $Beds $Price"); 
                         }
                 }
         }
