@@ -60,12 +60,6 @@
             <input type="reset" value="Nullstill" id="nullstill" name="nullstill" /> <br />
 
 
-RoomtypeID
-RoomtypeName
-Beds 
-Price
-ImageID
-
 
 
 <?php
