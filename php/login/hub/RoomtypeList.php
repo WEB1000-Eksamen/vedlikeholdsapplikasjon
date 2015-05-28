@@ -1,7 +1,7 @@
 <?php
-    require_once '../User.php';
+    require_once '../Roomtype.php';
     session_start();
-    if (!isset($_SESSION['user']) || isset($_SESSION['user']) && $_SESSION['user'] == false) {
+    if (!isset($_SESSION['roomtype']) || isset($_SESSION['roomtype']) && $_SESSION['roomtype'] == false) {
         header("Location: ../../../login.php");
     }
 ?>
@@ -41,8 +41,8 @@
                         echo "<td><input type='text' value='{$value['Beds']}' id='Beds' name='Beds' required onFocus='fokus(this)' onBlur='mistetFokus(this)' onMouseOver='musInn(this)' onMouseOut='musUt()'/></td>";
 					    echo "<td><input type='text' value='{$value['Price']}' id='Price' name='Price' required onFocus='fokus(this)' onBlur='mistetFokus(this)' onMouseOver='musInn(this)' onMouseOut='musUt()'/></td>";
                         echo "<td><input type='text' value='{$value['ImageID']}' id='ImageID' name='ImageID' required onFocus='fokus(this)' onBlur='mistetFokus(this)' onMouseOver='musInn(this)' onMouseOut='musUt()'/></td>";
-					    echo "<td><input type='submit' value='Slett' id='EndreRomKnapp' name='EndreRomKnapp' /></td>";
-					    echo "<td><input type='submit' value='Endre' id='EndreRomKnapp' name='EndreRomKnapp' /></td>";
+					    echo "<td><input type='submit' value='Slett' id='SlettKnapp' name='SlettKnapp' /></td>";
+					    echo "<td><input type='submit' value='Endre' id='Endreknapp' name='EndreKnapp' /></td>";
 					  echo "</tr>";
                     }
                 ?>
